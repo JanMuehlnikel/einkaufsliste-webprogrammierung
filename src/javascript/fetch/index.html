@@ -1,7 +1,5 @@
 <html>
 
-
-
 <body>
     <button id="create">Anlegen</button>
 </body>
@@ -10,7 +8,9 @@
 
     fetch("/api/employees/").then(data => {
         data.json().then(json => {
-            json.map(employee => {
+            json.array.forEach(element => {
+                map
+            });(employee => {
                 addElement(employee);
             })
         })
@@ -32,7 +32,7 @@
     }
 
     document.getElementById("create").addEventListener('click', () => {
-        fetch("/api/employee/?name=" + prompt("Name eingeben"),
+        fetch("/api/employee/?name=" + prompt("Artikel eingeben"),
             {
                 headers: {
                     'Accept': 'application/json',
