@@ -58,7 +58,7 @@ function App() {
 
 
     <main class="container" id="artikel-anzeigen" >
-      <p>test</p>
+
 
       {/*NAVBAR*/}
       <nav class="navbar navbar-expand-sm navbar-light">
