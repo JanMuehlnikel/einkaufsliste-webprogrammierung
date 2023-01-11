@@ -19,11 +19,11 @@ function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items?" + 
-    "item=" + data.item + 
-    "&quantity=" + data.quantity + 
-    "&unit=" + data.unit + 
-    "&responsible=" + data.responsible,
+    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items?" +
+      "item=" + data.item +
+      "&quantity=" + data.quantity +
+      "&unit=" + data.unit +
+      "&responsible=" + data.responsible,
       {
         headers: {
           'Accept': 'application/json',
@@ -47,11 +47,11 @@ function App() {
     return <div>ERROR</div>
   }
 
-  function deleteArticle(){
+  function deleteArticle() {
     console.log('DELETING')
     fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items/:1",
-    {method: 'DELETE'})
-    .then(function (res) { window.location.reload() })
+      { method: 'DELETE' })
+      .then(function (res) { window.location.reload() })
   }
 
   return (
@@ -59,56 +59,56 @@ function App() {
 
     <main class="container" id="artikel-anzeigen" >
       <p>test</p>
-      
-        {/*NAVBAR*/}
-        <nav class="navbar navbar-expand-sm navbar-light">
-          <div class="container-fluid">
-            <a href="#" class="navbar-brand">
-              <img src="/src/img/logo.png" height="50" alt="Einkaufsliste" />
-            </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <div class="navbar-nav .mx-auto">
-                <a href="#" class="nav-item nav-link active">Startseite  </a>
-                <a href="#" class="nav-item nav-link">Einkaufslisten  </a>
-                <a href="#" class="nav-item nav-link">Wochenplaner  </a>
-                <a href="#" class="nav-item nav-link">Rezepte  </a>
-              </div>
-              <div class="navbar-nav ms-auto">
-                <a href="#" class="nav-item nav-link">Anmelden</a>
-              </div>
+
+      {/*NAVBAR*/}
+      <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid">
+          <a href="#" class="navbar-brand">
+            <img src="/src/img/logo.png" height="50" alt="Einkaufsliste" />
+          </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav .mx-auto">
+              <a href="#" class="nav-item nav-link active">Startseite  </a>
+              <a href="#" class="nav-item nav-link">Einkaufslisten  </a>
+              <a href="#" class="nav-item nav-link">Wochenplaner  </a>
+              <a href="#" class="nav-item nav-link">Rezepte  </a>
+            </div>
+            <div class="navbar-nav ms-auto">
+              <a href="#" class="nav-item nav-link">Anmelden</a>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        {/*ADD ARTICLE */}
-        <button class="btn btn-lg btn-primary" onClick={handleShow}>Artikel hinzufügen</button>
+      {/*ADD ARTICLE */}
+      <button class="btn btn-lg btn-primary" onClick={handleShow}>Artikel hinzufügen</button>
 
-        {/*ARTICLE TAGS Tags */}
-        {data.map(items =>
-          <div>
-            <div class="row mt-3">
-              <div class="col">
-                <div class="input-group mb-1">
-                  <div class="input-group-text">
-                    <input class="form-check-input mt-0" type="checkbox"/>
-                  </div>
-
-                  <span class="input-group-text">{"" + items.item}</span>
-                  <span class="input-group-text">{"" + items.quantity}</span>
-                  <span class="input-group-text">{"" + items.unit}</span>
-                  <span class="input-group-text">{"" + items.responsible}</span>
-
-
-                  <button class="btn btn-outline-secondary" onClick={deleteArticle}>🗑️</button>
+      {/*ARTICLE TAGS Tags */}
+      {data.map(items =>
+        <div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="input-group mb-1">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" />
                 </div>
-              </div>
 
+                <span class="input-group-text">{"" + items.item}</span>
+                <span class="input-group-text">{"" + items.quantity}</span>
+                <span class="input-group-text">{"" + items.unit}</span>
+                <span class="input-group-text">{"" + items.responsible}</span>
+
+
+                <button class="btn btn-outline-secondary" onClick={deleteArticle}>🗑️</button>
+              </div>
             </div>
+
           </div>
-        )}
+        </div>
+      )}
 
       {/*ADD ARTICLE MODAL*/}
       <Modal show={show} onHide={handleClose} animation={false}>
@@ -129,7 +129,15 @@ function App() {
             </div>
 
             <div class="input-group mb-3">
-              <input {...register("unit")} type="text" class="form-control" placeholder="Meingeneinheit" aria-label="Mengeneinheit" aria-describedby="basic-addon1" />
+              <select {...register("unit")} type="text" class="form-control" placeholder="Meingeneinheit" aria-label="Mengeneinheit" aria-describedby="basic-addon1">
+                <option value="" selected disabled hidden>Mengeneinheit</option>
+                <option value="Liter">Liter</option>
+                <option value="Kilogramm">Kilogramm</option>
+                <option value="Gramm">Gramm</option>
+                <option value="Stück">Stück</option>
+                <option value="Milliliter">Milliliter</option>
+                <option value="Pfund">Pfund</option>
+              </select>
             </div>
 
             <div class="input-group mb-3">
