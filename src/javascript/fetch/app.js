@@ -16,6 +16,7 @@ app.use(function (req, res, next) {
 });
 
 app.post("/api/employee", (req, res) => {
+    console.log("postet")
     employees.push({
         id: "2",
         liste: req.query.liste,
@@ -26,17 +27,18 @@ app.post("/api/employee", (req, res) => {
     res.send(200);
 })
 
-app.delete('/api/employee/:emplId', (req, res) => {
-    const matchingEmployees = employees.filter(a => a.id === req.params.emplId);
-    if (matchingEmployees.length <= 0) {
+app.delete('/api/employee/:id', (req, res) => {
+    console.log("sdafsaf")
+    const matchingEmployees = employees.filter(a => a.id === req.params.id);
+    if (matchingEmployees.length >= 0) {
         res.send(404);
     }
     res.json(matchingEmployees[0])
 })
 
 app.get('/api/employees', (req, res) => res.json(employees));
-app.get('/api/employee/:emplId', (req, res) => {
-    const matchingEmployees = employees.filter(a => a.id === req.params.emplId);
+app.get('/api/employee/:id', (req, res) => {
+    const matchingEmployees = employees.filter(a => a.id === req.params.id);
     if (matchingEmployees.length <= 0) {
         res.send(404);
     }
