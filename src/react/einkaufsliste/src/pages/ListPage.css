@@ -1,0 +1,34 @@
+.row{
+    text-align: center;
+}
+
+.input-group-text{
+    width: 500;
+    align-content: center;
+    border-color: #4e4e4e;
+}
+
+#cb-abgehakt{
+
+}
+#igt-item{
+    border-left: none;
+    border-right: none;
+    font-weight: 500;
+}
+#igt-quantity{
+    border-left: none;
+    border-right: none;
+    padding-right: 0px;
+}
+#igt-unit{
+    border-left: none;
+    border-right: none;
+}
+#igt-responsible{
+    border-left: none;
+    border-right: none;
+}
+#btn-deleteItem{
+    border-left: none;
+}

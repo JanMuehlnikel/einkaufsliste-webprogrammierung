@@ -1,36 +1,47 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Nav, Navbar } from 'react-bootstrap'
+
 import { Link } from "react-router-dom";
 
-function Navbar() {
+
+function Navigation() {
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                    <Link class="nav-link" to="/">Home</Link>
-                    </li>
-                    <li class="nav-item"> 
+            <Navbar bg="light" expand="lg">
+            <container className="container-fluid">
+                <Nav className="ms-auto">
+                    <Navbar.Brand  href="/">THE LIST</Navbar.Brand>
+                </Nav>
+
+
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+
+                    <Nav className="me-auto">
+
+                        <Link class="nav-link" to="/">Homepage</Link>
                         <Link class="nav-link" to="/list">Einkaufsliste</Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
-        
-    
+                        <Link class="nav-link" to="/list">Wochenplaner</Link>
+                        <Link class="nav-link" to="/list">Rezepte</Link>
+
+                    </Nav>
+
+                    <Nav className="mr-auto">
+
+                        <Link class="nav-link" to="/">Anmelden</Link>
+                        <Link class="nav-link" to="/list">Registrieren</Link>
+
+                    </Nav>
+
+
+                </Navbar.Collapse>
+                </container>
+            </Navbar>
+
+
+
     )
 }
 
-export default Navbar
+export default Navigation
