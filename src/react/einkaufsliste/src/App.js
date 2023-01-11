@@ -3,6 +3,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 
+import Navbar from './components/navbar';
+
 import useFetch from "react-fetch-hook";
 import { useForm } from "react-hook-form";
 import React, { useState } from 'react';
@@ -52,37 +54,13 @@ function App() {
     fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items/" + id, {
       method: 'DELETE'
     })
-    .then(function (res) { window.location.reload() })
+      .then(function (res) { window.location.reload() })
   }
 
   return (
-
-
     <main class="container" id="artikel-anzeigen" >
 
-
-      {/*NAVBAR*/}
-      <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container-fluid">
-          <a href="#" class="navbar-brand">
-            <img src="/src/img/logo.png" height="50" alt="Einkaufsliste" />
-          </a>
-          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav .mx-auto">
-              <a href="#" class="nav-item nav-link active">Startseite  </a>
-              <a href="#" class="nav-item nav-link">Einkaufslisten  </a>
-              <a href="#" class="nav-item nav-link">Wochenplaner  </a>
-              <a href="#" class="nav-item nav-link">Rezepte  </a>
-            </div>
-            <div class="navbar-nav ms-auto">
-              <a href="#" class="nav-item nav-link">Anmelden</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar></Navbar>
 
       {/*ADD ARTICLE */}
       <button class="btn btn-lg btn-primary" onClick={handleShow}>Artikel hinzufügen</button>
