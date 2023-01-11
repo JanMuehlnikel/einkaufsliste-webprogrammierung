@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
 // POST
 app.post("/api/items", (req, res) => {
     items.push({
-        id: "2",
+        id: (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2), //unique id with time + random number
         item: req.query.item,
         quantity: req.query.quantity,
         unit: req.query.unit,
@@ -28,11 +28,17 @@ app.post("/api/items", (req, res) => {
 
 // DELETE
 app.delete('/api/items/:id', (req, res) => {
-    const matchingItem = items.filter(a => a.id === req.params.id);
-    if (matchingItem.length <= 0) {
-        res.send(404);
+    const {id} = req.params
+
+    // check if item is in array
+    const deleted = items.find(i => i.id == id)
+    if (deleted) {
+        // filter out the deleted id and create new array without the id
+        items = items.filter(i => i.id != id)
+        res.status(200).json(deleted)
+    }else{
+        res.status(404).json({message: + " ID" + id + " was not found!"})
     }
-    res.json(matchingItem[0])
 })
 
 // GET

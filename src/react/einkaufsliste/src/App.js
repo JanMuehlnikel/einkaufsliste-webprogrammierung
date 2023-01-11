@@ -19,7 +19,7 @@ function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items?" +
+    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items?" +
       "item=" + data.item +
       "&quantity=" + data.quantity +
       "&unit=" + data.unit +
@@ -35,7 +35,7 @@ function App() {
       .catch(function (res) { console.log(res) })
   }
 
-  const { isLoading, data, error } = useFetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items");
+  const { isLoading, data, error } = useFetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items");
 
   console.log(data)
 
@@ -47,11 +47,12 @@ function App() {
     return <div>ERROR</div>
   }
 
-  function deleteArticle() {
+  function deleteItem(id) {
     console.log('DELETING')
-    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu81.gitpod.io/api/items/:1",
-      { method: 'DELETE' })
-      .then(function (res) { window.location.reload() })
+    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items/" + id, {
+      method: 'DELETE'
+    })
+    .then(function (res) { window.location.reload() })
   }
 
   return (
@@ -92,6 +93,7 @@ function App() {
           <div class="row mt-3">
             <div class="col">
               <div class="input-group mb-1">
+
                 <div class="input-group-text">
                   <input class="form-check-input mt-0" type="checkbox" />
                 </div>
@@ -102,7 +104,7 @@ function App() {
                 <span class="input-group-text">{"" + items.responsible}</span>
 
 
-                <button class="btn btn-outline-secondary" onClick={deleteArticle}>🗑️</button>
+                <button class="btn btn-outline-secondary" onClick={() => deleteItem(items.id)}>🗑️</button>
               </div>
             </div>
 
