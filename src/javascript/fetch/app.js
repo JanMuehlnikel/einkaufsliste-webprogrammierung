@@ -2,9 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-let employees = [
-    { id: "1", liste: "liste1", artikel: "Apfel", menge: 1, zugeornet: "jan" },
-    { id: "2", liste: "liste2", artikel: "Wasser", menge: 6, zugeornet: "jan" },
+let items = [
+    {id: "1", item:"Apfel", quantity:"4", unit:"Stück", responsible:"jan"},
 ]
 
 app.use(function (req, res, next) {
@@ -15,34 +14,35 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post("/api/employee", (req, res) => {
-    console.log("postet")
-    employees.push({
+// POST
+app.post("/api/items", (req, res) => {
+    items.push({
         id: "2",
-        liste: req.query.liste,
-        artikel: req.query.artikel,
-        menge: req.query.menge,
-        zugeornet: req.query.zugeornet
+        item: req.query.item,
+        quantity: req.query.quantity,
+        unit: req.query.unit,
+        responsible: req.query.responsible
     });
     res.send(200);
 })
 
-app.delete('/api/employee/:id', (req, res) => {
-    console.log("sdafsaf")
-    const matchingEmployees = employees.filter(a => a.id === req.params.id);
-    if (matchingEmployees.length >= 0) {
+// DELETE
+app.delete('/api/items/:id', (req, res) => {
+    const matchingItem = items.filter(a => a.id === req.params.id);
+    if (matchingItem.length <= 0) {
         res.send(404);
     }
-    res.json(matchingEmployees[0])
+    res.json(matchingItem[0])
 })
 
-app.get('/api/employees', (req, res) => res.json(employees));
-app.get('/api/employee/:id', (req, res) => {
-    const matchingEmployees = employees.filter(a => a.id === req.params.id);
-    if (matchingEmployees.length <= 0) {
+// GET
+app.get('/api/items', (req, res) => res.json(items));
+app.get('/api/items/:id', (req, res) => {
+    const matchingItem = items.filter(a => a.id === req.params.id);
+    if (matchingItem.length <= 0) {
         res.send(404);
     }
-    res.json(matchingEmployees[0])
+    res.json(matchingItem[0])
 });
 
 app.get('/', (req, res) => {
