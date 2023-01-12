@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import Navigation from "../components/navbar";
 
 function LandingPage(){
 
     return(
         <div>
-            <Navbar></Navbar>
+            <Navigation></Navigation>
             <div>Landing Page</div>
         </div>
     )

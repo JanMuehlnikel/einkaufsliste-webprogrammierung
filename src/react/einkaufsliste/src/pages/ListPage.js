@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./ListPage.css"
+import "../css/ListPage.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 
@@ -60,25 +60,25 @@ function ListPage() {
     // full width container
     <main class="container-fluid" id="con-listpage">
 
-      <Navigation></Navigation>
+      <Navigation id="navbar"></Navigation>
 
         <div class="row">
-          <div class="col-sm"></div>
+          <div class="col"></div>
 
-          <div class="col-sm">
+          <div class="col">
             <h1>Deine Einkaufsliste</h1>
           </div>
 
-          <div class="col-sm"></div>
+          <div class="col"></div>
 
         </div>
 
 
       <div class="row">
 
-        <div class="col-sm"></div>
+        <div class="col"></div>
 
-        <div class="col-sm">
+        <div class="col">
 
 
           {/*ARTICLE TAGS Tags */}
@@ -114,7 +114,7 @@ function ListPage() {
 
         </div>
 
-        <div class="col-sm"></div>
+        <div class="col"></div>
       </div>
 
       {/*ADD ARTICLE MODAL*/}

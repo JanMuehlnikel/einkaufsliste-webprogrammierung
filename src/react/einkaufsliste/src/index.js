@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import LandingPage from './pages/LandingPage';
 import ListPage from './pages/ListPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 import {
   createBrowserRouter,
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: "list",
     element: <ListPage />,
+  },
+  {
+    path: "login",
+    element: <LoginPage />,
+  },
+  {
+    path: "register",
+    element: <RegisterPage />,
   },
 ]);
 
