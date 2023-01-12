@@ -8,27 +8,22 @@
     border-color: #4e4e4e;
 }
 
-#cb-abgehakt{
-
+.cb-abgehakt{
+    background-color: white !important;
+    width: 10%;
 }
 #igt-item{
     border-left: none;
     border-right: none;
-    font-weight: 500;
-}
-#igt-quantity{
-    border-left: none;
-    border-right: none;
-    padding-right: 0px;
-}
-#igt-unit{
-    border-left: none;
-    border-right: none;
-}
-#igt-responsible{
-    border-left: none;
-    border-right: none;
+    background-color: white;
+    width:  75%;
+    overflow: false;
 }
 #btn-deleteItem{
     border-left: none;
+    width: 15%;
+}
+
+#btn-addArticle{
+    margin-top: 20px;
 }

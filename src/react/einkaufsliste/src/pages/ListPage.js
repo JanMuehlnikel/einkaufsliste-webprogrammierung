@@ -37,8 +37,7 @@ function ListPage() {
       .catch(function (res) { console.log(res) })
   }
 
-  const { isLoading, data, error } = useFetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items");
-
+  const { isLoading, data, error } = useFetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items"); 
   console.log(data)
 
   if (isLoading) {
@@ -90,16 +89,19 @@ function ListPage() {
                   <div class="input-group mb-1">
 
                     <div class="input-group-text">
-                      <input class="form-check-input mt-0" id="cb-abgehakt" type="checkbox" />
+                      <input class="form-check-input" id="cb-abgehakt" type="checkbox" />
                     </div>
 
-                    <span class="input-group-text" id="igt-item">{"" + items.item}</span>
-                    <span class="input-group-text" id="igt-quantity">{"" + items.quantity}</span>
-                    <span class="input-group-text" id="igt-unit">{"" + items.unit}</span>
-                    <span class="input-group-text" id="igt-responsible">{"" + items.responsible}</span>
+                    <span class="input-group-text" id="igt-item">{items.item + " " 
+                    + items.quantity + " " 
+                    + items.unit + "  ⇨ " 
+                    + items.responsible}</span>
 
 
-                    <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(items.id)}>🗑️</button>
+                    <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(items.id)}>
+                      <img src='https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-trash-can-thin.png&r=0&g=0&b=0'
+                      width="25px" height="auto"></img>
+                    </button>
                   </div>
                 </div>
 
@@ -108,7 +110,7 @@ function ListPage() {
           )}
 
           {/*ADD ARTICLE */}
-          <button class="btn btn-lg btn-primary" onClick={handleShow}>Artikel hinzufügen</button>
+          <button class="btn btn-lg btn-light btn-primary" id="btn-addArticle" onClick={handleShow}>Artikel hinzufügen</button>
 
         </div>
 

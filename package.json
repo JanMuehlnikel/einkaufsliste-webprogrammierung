@@ -14,6 +14,7 @@
         "css": "^3.0.0",
         "cssparser": "^0.9.4",
         "glob": "^8.0.3",
+        "jquery": "^3.6.3",
         "live-server": "^1.2.2"
     },
     "devDependencies": {
