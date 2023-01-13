@@ -7,28 +7,29 @@
     border-color: #4e4e4e;
 }
 
-.cb-abgehakt{
-    background-color: white !important;
-    width: 10%;
-}
-#btn-notTicked{
+#btn-text-false{
     text-align: left;
     border-right: none;
     background-color: white;
     width:  70%;
     overflow: false;
 }
-#btn-deleteItem{
+#btn-delete-false{
     border-left: none;
     width: 30%;
 }
 
-#btn-ticked{
+#btn-text-true{
     text-align: left;
     border-right: none;
-    background-color: rgb(174, 174, 174);
+    background-color: rgb(210, 210, 210);
     width:  70%;
     overflow: false;
+}
+
+#btn-delete-true{
+    border-left: none;
+    width: 30%;
 }
 
 #btn-addArticle{

@@ -79,6 +79,37 @@ function ListPage() {
       .catch(function (res) { console.log(res) })
   }
 
+  function showTicked(tickedValue) {
+    return (
+      data.map(item => {
+        <h1>{tickedValue}</h1>
+        if (item.ticked == tickedValue) {
+
+          return (
+
+            <div class="row mt-3">
+              <div class="col">
+                <div class="input-group mb-1">
+
+                  <button class="btn btn-outline-secondary" id={"btn-text-" + tickedValue} onClick={() => tickItem(item.itemID, true)}>
+                    {item.item + " "
+                      + item.quantity + " "
+                      + item.unit +
+                      + item.responsible}
+                  </button>
+
+                  {/*DELETE BUTTON */}
+                  <button class="btn btn-outline-secondary" id={"btn-delete-" +  tickedValue} onClick={() => deleteItem(item.itemID)}>🗑</button>
+                </div>
+              </div>
+            </div>
+          )
+        }
+
+      })
+    )
+  }
+
 
 
   return (
@@ -107,54 +138,8 @@ function ListPage() {
 
 
           {/*ARTICLE TAGS Tags */}
-          {console.log(data)}
-
-          {data.map(item => {
-            if (item.ticked === "false") {
-              return (
-
-                <div class="row mt-3">
-                  <div class="col">
-                    <div class="input-group mb-1">
-
-                      <button class="btn btn-outline-secondary" id="btn-notTicked" onClick={() => tickItem(item.itemID, true)}>
-                        {item.item + " "
-                          + item.quantity + " "
-                          + item.unit +
-                          + item.responsible}
-                      </button>
-
-                      {/*DELETE BUTTON */}
-                      <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(item.itemID)}>🗑</button>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
-          })}
-
-          {data.map(item => {
-            if (item.ticked === "true") {
-              return (
-                <div class="row mt-3">
-                  <div class="col">
-                    <div class="input-group mb-1">
-
-                      <button class="btn btn-outline-secondary" id="btn-ticked" onClick={() => tickItem(item.itemID, true)}>
-                        {item.item + " "
-                          + item.quantity + " "
-                          + item.unit +
-                          + item.responsible}
-                      </button>
-
-                      {/*DELETE BUTTON */}
-                      <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(item.itemID)}>🗑</button>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
-          })}
+          {showTicked("false", data)}
+          {showTicked("true", data)}
 
           {/*ADD ARTICLE */}
           <button class="btn btn-lg btn-light btn-primary" id="btn-addArticle" onClick={handleShow}>Artikel hinzufügen</button>
