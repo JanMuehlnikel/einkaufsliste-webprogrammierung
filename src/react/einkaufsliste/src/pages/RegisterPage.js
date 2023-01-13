@@ -2,21 +2,32 @@ import React from "react";
 import Navigation from '../components/navbar';
 import "../css/RegisterPage.css"
 import { useForm } from "react-hook-form";
+import { validationUserID } from "../constants";
 
 function RegisterPage() {
 
    const { register, handleSubmit, formState: { errors } } = useForm();
 
    const onRegister = data => {
-      console.log(data.prename)
-      console.log(data.name)
-      console.log(data.email)
-      console.log(data.password)
+      fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/register?" +
+         "prename=" + data.prename +
+         "&name=" + data.name +
+         "&email=" + data.email +
+         "&password=" + data.password,
+         {
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+            },
+            method: "POST",
+         })
+         .then(function (res) { window.location.reload() })
+         .catch(function (res) { console.log(res) })
    }
 
 
    return (
-      <main class="container-fluid" id="con-listpage">
+      <main class="container-fluid" id="con-registerpage">
          <Navigation></Navigation>
 
          <div class="row">

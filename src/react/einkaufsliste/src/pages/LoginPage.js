@@ -4,7 +4,6 @@ import "../css/LoginPage.css"
 import { useForm } from "react-hook-form";
 
 function LoginPage() {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onLogin = data => {
@@ -13,13 +12,13 @@ function LoginPage() {
     }
 
     return (
-        <main class="container-fluid" id="con-listpage">
+        <main class="container-fluid" id="con-loginpage">
             <Navigation></Navigation>
             <div class="row">
                 <div class="col"></div>
 
                 <div class="col">
-                    <h1>Anmeldung</h1>
+                    <h1>Anmelden</h1>
                 </div>
 
                 <div class="col"></div>

@@ -4,25 +4,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 
 import Navigation from '../components/navbar';
+import Signup from './Signup';
 
 import useFetch from "react-fetch-hook";
 import { useForm } from "react-hook-form";
-
+import { validationUserID } from '../constants';
 
 function ListPage() {
+
   // add article modal functions
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-  // fetch articls
+  // POST ITEMS
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items?" +
-      "item=" + data.item +
+    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items?" +
+      "userID=" + validationUserID +
+      "&item=" + data.item +
       "&quantity=" + data.quantity +
       "&unit=" + data.unit +
       "&responsible=" + data.responsible,
@@ -37,25 +39,29 @@ function ListPage() {
       .catch(function (res) { console.log(res) })
   }
 
-  const { isLoading, data, error } = useFetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items"); 
-  console.log(data)
+  // GET ITEMS
+  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + validationUserID); 
 
   if (isLoading) {
     return <div>IS loading</div>
   }
 
   if (error) {
-    return <div>ERROR</div>
+    return <Signup></Signup>
   }
 
-  function deleteItem(id) {
+  // DELETE ITEMS
+
+  function deleteItem(theID) {
+    console.log(theID)
     console.log('DELETING')
-    fetch("https://8080-simonklausludwig-base-0zd2m0ln3ei.ws-eu82.gitpod.io/api/items/" + id, {
+    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + validationUserID + "@" + theID, {
       method: 'DELETE'
     })
       .then(function (res) { window.location.reload() })
   }
 
+ 
   return (
     // full width container
     <main class="container-fluid" id="con-listpage">
@@ -97,8 +103,8 @@ function ListPage() {
                     + items.unit + "  ⇨ " 
                     + items.responsible}</span>
 
-
-                    <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(items.id)}>
+                    {/*DELETE BUTTON */}
+                    <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(items.itemID)}>
                       <img src='https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-trash-can-thin.png&r=0&g=0&b=0'
                       width="25px" height="auto"></img>
                     </button>
@@ -160,7 +166,6 @@ function ListPage() {
 
 
     </main >
-
 
   );
 }
