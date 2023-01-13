@@ -1,18 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Navbar.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar } from 'react-bootstrap'
 
 import { Link } from "react-router-dom";
 
+import { Logging } from "../context/context";
+
 
 function Navigation() {
 
+    const [loggedIn, setLoggedIn] = useState(false)
+
     return (
-            <Navbar bg="light" expand="lg" id="navbar-normal">
+
+
+        <Navbar bg="light" expand="lg" id="navbar-normal">
             <container className="container-fluid">
                 <Nav className="ms-auto">
-                    <Navbar.Brand  href="/">THE LIST</Navbar.Brand>
+                    <Navbar.Brand href="/">THE LIST</Navbar.Brand>
                 </Nav>
 
 
@@ -30,15 +36,22 @@ function Navigation() {
 
                     <Nav className="mr-auto">
 
-                        <Link class="nav-link" to="/login">Anmelden</Link>
-                        <Link class="nav-link" to="/register">Registrieren</Link>
+                        {loggedIn ?
+                            <div>
+                                <Link class="nav-link" to="/login">Logged in as ...</Link>
+                            </div> :
+                            <div>
+                                <Link class="nav-link" to="/login">Anmelden</Link>
+                                <Link class="nav-link" to="/register">Registrieren</Link>
+                            </div>}
+
 
                     </Nav>
 
 
                 </Navbar.Collapse>
-                </container>
-            </Navbar>
+            </container>
+        </Navbar>
 
 
 

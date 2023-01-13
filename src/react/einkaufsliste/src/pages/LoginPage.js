@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navigation from '../components/navbar';
 import "../css/LoginPage.css"
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Toast from 'react-bootstrap/Toast';
+import { Logging } from "../context/context";
+import { Authentification } from "../context/context";
 
 function LoginPage() {
-    const [authentification, setAuth] = useState("")
+
+    const {loggedIn, setLoggedIn} = useContext(Logging)
+    const {userID, setUserID} = useContext(Authentification)
+
     const [loginMessage, setLoginMessage] = useState("")
     
-
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onLogin = data => {
         fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/login?" +
@@ -27,8 +30,9 @@ function LoginPage() {
 
                 if (response.auth != "error") {
                     console.log("Successful Login!")
-                    setAuth(response.auth)
+                    setUserID(response.auth)
                     setLoginMessage("Erfolgreich angemeldet!")
+                    setLoggedIn(true)
                 } else {
                     console.log("Login failed1")
                     setLoginMessage("Die Email Adresse oder das Passwort sind falsch!")
@@ -38,15 +42,9 @@ function LoginPage() {
             .catch(function (response) { console.log(response) })
     }
 
-    function failed(){
-        return (
-            <h1>failed</h1>
-        )
-    }
     return (
         <main class="container-fluid" id="con-loginpage">
 
-            <Navigation></Navigation>
             <div class="row">
                 <div class="col"></div>
 
@@ -76,8 +74,9 @@ function LoginPage() {
                 </div>
 
                 <div class="col"></div>
-
-                <p>{loginMessage}</p>
+                    
+                {loggedIn ? <h1>LOGGED IN</h1>: <h1>Not loggedIn</h1>}
+                <p>{userID}</p>
 
             </div>
         </main >

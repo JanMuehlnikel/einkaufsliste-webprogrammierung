@@ -116,8 +116,6 @@ function ListPage() {
     // full width container
     <main class="container-fluid" id="con-listpage">
 
-      <Navigation id="navbar"></Navigation>
-
       <div class="row">
         <div class="col"></div>
 
