@@ -27,7 +27,8 @@ function ListPage() {
       "&item=" + data.item +
       "&quantity=" + data.quantity +
       "&unit=" + data.unit +
-      "&responsible=" + data.responsible,
+      "&responsible=" + data.responsible +
+      "&ticked=false",
       {
         headers: {
           'Accept': 'application/json',
@@ -40,7 +41,7 @@ function ListPage() {
   }
 
   // GET ITEMS
-  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + validationUserID); 
+  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + validationUserID);
 
   if (isLoading) {
     return <div>IS loading</div>
@@ -52,32 +53,50 @@ function ListPage() {
 
   // DELETE ITEMS
 
-  function deleteItem(theID) {
-    console.log(theID)
+  function deleteItem(id) {
+    console.log(id)
     console.log('DELETING')
-    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + validationUserID + "@" + theID, {
+    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + validationUserID + "@" + id, {
       method: 'DELETE'
     })
       .then(function (res) { window.location.reload() })
   }
 
- 
+  //tickItem
+  function tickItem(iID, tick) {
+    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/ticked?" +
+      "userID=" + validationUserID +
+      "&itemID=" + iID +
+      "&ticked=" + tick,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+      })
+      .then(function (res) { window.location.reload() })
+      .catch(function (res) { console.log(res) })
+  }
+
+
+
   return (
     // full width container
     <main class="container-fluid" id="con-listpage">
 
       <Navigation id="navbar"></Navigation>
 
-        <div class="row">
-          <div class="col"></div>
+      <div class="row">
+        <div class="col"></div>
 
-          <div class="col">
-            <h1>Deine Einkaufsliste</h1>
-          </div>
-
-          <div class="col"></div>
-
+        <div class="col">
+          <h1>Deine Einkaufsliste</h1>
         </div>
+
+        <div class="col"></div>
+
+      </div>
 
 
       <div class="row">
@@ -88,32 +107,54 @@ function ListPage() {
 
 
           {/*ARTICLE TAGS Tags */}
-          {data.map(items =>
-            <div>
-              <div class="row mt-3">
-                <div class="col">
-                  <div class="input-group mb-1">
+          {console.log(data)}
 
-                    <div class="input-group-text">
-                      <input class="form-check-input" id="cb-abgehakt" type="checkbox" />
+          {data.map(item => {
+            if (item.ticked === "false") {
+              return (
+
+                <div class="row mt-3">
+                  <div class="col">
+                    <div class="input-group mb-1">
+
+                      <button class="btn btn-outline-secondary" id="btn-notTicked" onClick={() => tickItem(item.itemID, true)}>
+                        {item.item + " "
+                          + item.quantity + " "
+                          + item.unit +
+                          + item.responsible}
+                      </button>
+
+                      {/*DELETE BUTTON */}
+                      <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(item.itemID)}>🗑</button>
                     </div>
-
-                    <span class="input-group-text" id="igt-item">{items.item + " " 
-                    + items.quantity + " " 
-                    + items.unit + "  ⇨ " 
-                    + items.responsible}</span>
-
-                    {/*DELETE BUTTON */}
-                    <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(items.itemID)}>
-                      <img src='https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-trash-can-thin.png&r=0&g=0&b=0'
-                      width="25px" height="auto"></img>
-                    </button>
                   </div>
                 </div>
+              )
+            }
+          })}
 
-              </div>
-            </div>
-          )}
+          {data.map(item => {
+            if (item.ticked === "true") {
+              return (
+                <div class="row mt-3">
+                  <div class="col">
+                    <div class="input-group mb-1">
+
+                      <button class="btn btn-outline-secondary" id="btn-ticked" onClick={() => tickItem(item.itemID, true)}>
+                        {item.item + " "
+                          + item.quantity + " "
+                          + item.unit +
+                          + item.responsible}
+                      </button>
+
+                      {/*DELETE BUTTON */}
+                      <button class="btn btn-outline-secondary" id="btn-deleteItem" onClick={() => deleteItem(item.itemID)}>🗑</button>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          })}
 
           {/*ADD ARTICLE */}
           <button class="btn btn-lg btn-light btn-primary" id="btn-addArticle" onClick={handleShow}>Artikel hinzufügen</button>
@@ -157,7 +198,7 @@ function ListPage() {
               <input {...register("responsible")} type="text" class="form-control" placeholder="Zugeordnet" aria-label="Zugeordnet" aria-describedby="basic-addon1" />
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" id="btn-hinzufügen" type="submit">Artikel hinzufügen</button>
+            <button class="w-100 btn btn-light btn-lg btn-primary" id="btn-hinzufügen" type="submit">Artikel hinzufügen</button>
 
           </form>
         </Modal.Body>

@@ -11,16 +11,24 @@
     background-color: white !important;
     width: 10%;
 }
-#igt-item{
-    border-left: none;
+#btn-notTicked{
+    text-align: left;
     border-right: none;
     background-color: white;
-    width:  75%;
+    width:  70%;
     overflow: false;
 }
 #btn-deleteItem{
     border-left: none;
-    width: 15%;
+    width: 30%;
+}
+
+#btn-ticked{
+    text-align: left;
+    border-right: none;
+    background-color: rgb(174, 174, 174);
+    width:  70%;
+    overflow: false;
 }
 
 #btn-addArticle{
