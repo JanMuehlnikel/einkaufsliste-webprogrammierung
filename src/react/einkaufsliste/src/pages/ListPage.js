@@ -27,7 +27,7 @@ function ListPage() {
       "&item=" + data.item +
       "&quantity=" + data.quantity +
       "&unit=" + data.unit +
-      "&responsible=" + data.responsible +
+      "&responsible=" + data.responsible + 
       "&ticked=false",
       {
         headers: {

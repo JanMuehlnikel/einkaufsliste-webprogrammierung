@@ -1,8 +1,7 @@
-import React from "react";
+import React, {} from "react";
 import Navigation from '../components/navbar';
 import "../css/RegisterPage.css"
 import { useForm } from "react-hook-form";
-import { validationUserID } from "../constants";
 
 function RegisterPage() {
 
@@ -21,7 +20,7 @@ function RegisterPage() {
             },
             method: "POST",
          })
-         .then(function (res) { window.location.reload() })
+         .then(function (res) { })
          .catch(function (res) { console.log(res) })
    }
 

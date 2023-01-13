@@ -1,18 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from '../components/navbar';
 import "../css/LoginPage.css"
 import { useForm } from "react-hook-form";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Toast from 'react-bootstrap/Toast';
 
 function LoginPage() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [authentification, setAuth] = useState("")
+    const [loginMessage, setLoginMessage] = useState("")
+    
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onLogin = data => {
-        console.log(data.email)
-        console.log(data.password)
+        fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/login?" +
+            "email=" + data.email +
+            "&password=" + data.password,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+            })
+            .then(response => response.json())
+            .then(response => {
+
+                if (response.auth != "error") {
+                    console.log("Successful Login!")
+                    setAuth(response.auth)
+                    setLoginMessage("Erfolgreich angemeldet!")
+                } else {
+                    console.log("Login failed1")
+                    setLoginMessage("Die Email Adresse oder das Passwort sind falsch!")
+                }
+
+            })
+            .catch(function (response) { console.log(response) })
     }
 
+    function failed(){
+        return (
+            <h1>failed</h1>
+        )
+    }
     return (
         <main class="container-fluid" id="con-loginpage">
+
             <Navigation></Navigation>
             <div class="row">
                 <div class="col"></div>
@@ -43,6 +76,8 @@ function LoginPage() {
                 </div>
 
                 <div class="col"></div>
+
+                <p>{loginMessage}</p>
 
             </div>
         </main >

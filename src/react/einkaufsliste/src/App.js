@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function App() {
+function AppRouter() {
 
   return (
     <main class="container" id="artikel-anzeigen" >
@@ -11,5 +11,5 @@ function App() {
   );
 }
 
-export default App;
+export default AppRouter;
 
