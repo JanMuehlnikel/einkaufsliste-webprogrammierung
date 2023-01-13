@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import "./Navbar.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar } from 'react-bootstrap'
@@ -10,7 +10,7 @@ import { Logging } from "../context/context";
 
 function Navigation() {
 
-    const [loggedIn, setLoggedIn] = useState(false)
+    const {loggedIn, setLoggedIn} = useContext(Logging)
 
     return (
 
