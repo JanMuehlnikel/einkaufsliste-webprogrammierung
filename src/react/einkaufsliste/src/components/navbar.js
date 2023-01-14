@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Navbar.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 
 import { Link } from "react-router-dom";
 
@@ -36,7 +36,7 @@ function Navigation() {
                         <Nav className="me-auto">
                             <Link class="nav-link" to="/">Homepage</Link>
                             <Link class="nav-link" to="/list">Einkaufsliste</Link>
-                            <Link class="nav-link" to="/">Wochenplaner</Link>
+                            <Link class="nav-link" to="/planner">Wochenplaner</Link>
                             <Link class="nav-link" to="/">Rezepte</Link>
                         </Nav>
                         <Nav className="mr-auto">

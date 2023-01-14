@@ -5,11 +5,13 @@ const path = require('path');
 let users = [
     {
         userID: "user1", prename: "Jan", name: "Mühlnikel", email: "jan.muehlnikel@gmx.de", password: "jan2001",
-        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "Jan", ticked: "false" }]
+        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "Jan", ticked: "false" }],
+        planner: {Montag: "BOLO", Dienstag: "", Mittwoch:"", Donnerstag:"", Freitag:"", Samstag:"", Sonntag:""}
     },
     {
         userID: "user2", prename: "Franziska", name: "Marb", email: "franziska.marb@gmx.de", password: "pw123",
-        items: [{ itemID: "1", item: "Banan", quantity: "4", unit: "Stück", responsible: "Franziska", ticked: "false" }]
+        items: [{ itemID: "1", item: "Banan", quantity: "4", unit: "Stück", responsible: "Franziska", ticked: "false" }],
+        planner: {Montag: "Schnitzel", Dienstag: "", Mittwoch:"", Donnerstag:"", Freitag:"", Samstag:"", Sonntag:""}
     },
 ]
 
@@ -41,7 +43,8 @@ app.post("/api/register", (req, res) => {
             name: req.query.name,
             email: req.query.email,
             password: req.query.password,
-            items: []
+            items: [],
+            planner: {}
         })
         res.status(200).json({ message: "success" })
     }
@@ -95,8 +98,26 @@ app.post("/api/users/items/ticked", (req, res) => {
     } else {
         res.status(404).json({ message: + " ID" + itemID + " was not found!" })
     }
+})
 
-    res.send(200)
+// POST PLANNER ITEM
+app.post("/api/users/planner", (req, res) => {
+    console.log(req.query.userID)
+    console.log(req.query.weekday)
+    console.log(req.query.plan)
+    userID = req.query.userID
+    weekday = req.query.weekday
+    plan = req.query.plan
+
+    let planner_array = users.find(u => u.userID == userID)
+    console.log(planner_array)
+    if (planner_array) {
+        planner_array = users.find(u => u.userID == userID)["planner"][weekday] = plan
+
+        res.status(200).json(planner_array)
+    } else {
+        res.status(404).json({ message: + " Plan for " + userID + " was not found!" })
+    }
 })
 
 // DELETE ITEM
@@ -125,6 +146,11 @@ app.get('/api/user/items/:userID', (req, res) => {
     const item_array = users.find(u => u.userID == req.params.userID)["items"]
 
     res.json(item_array)
+});
+app.get('/api/user/plan/:userID', (req, res) => {
+    const planner_array = users.find(u => u.userID == req.params.userID)["planner"]
+
+    res.json(planner_array)
 });
 
 app.get('/', (req, res) => {

@@ -52,10 +52,10 @@ function ListPage() {
   }
 
   if (error) {
-    return <Signup></Signup>
+    return <div>CONNECTING ERROR</div>
   }
 
-  // DELETE ITEMS
+  // DELETE USER ITEMS
 
   function deleteItem(ItemID) {
     console.log('DELETING')
