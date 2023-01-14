@@ -9,29 +9,56 @@
 
 #btn-text-false{
     text-align: left;
+    word-Wrap: break-word;
     border-right: none;
     background-color: white;
     width:  70%;
     overflow: false;
 }
+
+#btn-text-false:hover{
+    background-color: rgb(255, 78, 78);
+}
+#btn-text-false:hover + #btn-delete-false{
+    background-color: rgb(255, 78, 78);
+}
+
 #btn-delete-false{
     border-left: none;
+    background-color: white;
     width: 30%;
 }
 
 #btn-text-true{
     text-align: left;
+    word-Wrap: break-word;
     border-right: none;
     background-color: rgb(210, 210, 210);
     width:  70%;
     overflow: false;
 }
 
+#btn-text-true:hover{
+    background-color: rgb(121, 248, 151);
+}
+#btn-text-true:hover + #btn-delete-true{
+    background-color: rgb(121, 248, 151);
+}
+
 #btn-delete-true{
     border-left: none;
+    background-color: rgb(210, 210, 210);
     width: 30%;
 }
 
 #btn-addArticle{
+    font-weight: bolder;
+    text-align: center;
     margin-top: 20px;
+    word-Wrap: break-word;
+    font-size: 14px;
+    position:  sticky;
+    width: 80%;
+    bottom: 30px;
+    z-index: 2;
 }

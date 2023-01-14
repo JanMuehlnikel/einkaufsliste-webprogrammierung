@@ -5,11 +5,11 @@ const path = require('path');
 let users = [
     {
         userID: "user1", prename: "Jan", name: "Mühlnikel", email: "jan.muehlnikel@gmx.de", password: "jan2001",
-        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "Jan", ticked: false }]
+        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "Jan", ticked: "false" }]
     },
     {
         userID: "user2", prename: "Franziska", name: "Marb", email: "franziska.marb@gmx.de", password: "pw123",
-        items: [{ itemID: "1", item: "Banan", quantity: "4", unit: "Stück", responsible: "Franziska", ticked: false }]
+        items: [{ itemID: "1", item: "Banan", quantity: "4", unit: "Stück", responsible: "Franziska", ticked: "false" }]
     },
 ]
 
@@ -89,7 +89,7 @@ app.post("/api/users/items/ticked", (req, res) => {
 
     if (item) {
         // filter out the item id and create new array without the id
-        users.find(u => u.userID == userID)['items'].find(u => u.itemID == itemID)['ticked'] = "true"
+        users.find(u => u.userID == userID)['items'].find(u => u.itemID == itemID)['ticked'] = ticked
 
         res.status(200).json(item)
     } else {

@@ -67,6 +67,7 @@ function ListPage() {
 
   //tickItem
   function tickItem(iID, tick) {
+    console.log(tick)
     fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/ticked?" +
       "userID=" + userID +
       "&itemID=" + iID +
@@ -83,9 +84,16 @@ function ListPage() {
   }
 
   function showTicked(tickedValue) {
+    function oppositeBool(b) {
+      if (b == "false") {
+        return "true"
+      }else{
+        return "false"
+      }
+    }
     return (
       data.map(item => {
-        <h1>{tickedValue}</h1>
+
         if (item.ticked == tickedValue) {
 
           return (
@@ -94,11 +102,21 @@ function ListPage() {
               <div class="col">
                 <div class="input-group mb-1">
 
-                  <button class="btn btn-light btn-outline-secondary" id={"btn-text-" + tickedValue} onClick={() => tickItem(item.itemID, true)}>
-                    {item.item + " "
+                  <button class="btn btn-light btn-outline-secondary" id={"btn-text-" + tickedValue} 
+                  onClick={() => tickItem(item.itemID, oppositeBool(tickedValue))}>
+                    {tickedValue=="false"?
+                      "☐ "
+                      + item.item + " "
                       + item.quantity + " "
-                      + item.unit +
-                      + item.responsible}
+                      + item.unit + " "
+                      + (item.responsible.trim() != "" ? "⇒ "+ item.responsible : "") 
+                      :
+                      "☒ "
+                      + item.item + " "
+                      + item.quantity + " "
+                      + item.unit + " "
+                      + (item.responsible.trim() != "" ? "⇒ "+ item.responsible : "") 
+                    }
                   </button>
 
                   {/*DELETE BUTTON */}
@@ -143,7 +161,7 @@ function ListPage() {
           {showTicked("true", data)}
 
           {/*ADD ARTICLE */}
-          <button class="btn btn-lg btn-light btn-primary" id="btn-addArticle" onClick={handleShow}>Artikel hinzufügen</button>
+          <button class="btn btn-lg btn-light btn-primary" id="btn-addArticle" onClick={handleShow}>Hinzufügen</button>
 
         </div>
 
