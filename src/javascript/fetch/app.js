@@ -23,33 +23,42 @@ app.use(function (req, res, next) {
 
 // POST REGISTER
 app.post("/api/register", (req, res) => {
-    users.push({
-        userID: "user:" + (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2),
-        prename: req.query.prename,
-        name: req.query.name,
-        email: req.query.email,
-        password: req.query.password,
-        items: []
-    })
-    res.send(200)
+    let existendEmail = false
+
+    // check if email exists in users array
+    for (var i = 0; i < users.length; i++) {
+        if (users[i]['email'] == req.query.email) {
+            existendEmail = true
+        }
+    }
+    if (existendEmail) {
+        res.send({ message: "Diese Email Adresse existiert bereits!" })
+    } else {
+        // push new user in users
+        users.push({
+            userID: req.query.userID,
+            prename: req.query.prename,
+            name: req.query.name,
+            email: req.query.email,
+            password: req.query.password,
+            items: []
+        })
+        res.status(200).json({ message: "success" })
+    }
 })
 
 // POST LOGIN
 app.post("/api/login", (req, res) => {
     try {
-    console.log(req.query.email)
-    console.log(req.query.password)
-    userEmail = users.find(u => u.email == req.query.email)["email"]
-    userPassword = users.find(u => u.password == req.query.password)["password"]
-    userID = users.find(u => u.email == req.query.email)["userID"]
+        userEmail = users.find(u => u.email == req.query.email)["email"]
+        userPassword = users.find(u => u.password == req.query.password)["password"]
+        userID = users.find(u => u.email == req.query.email)["userID"]
 
-    console.log("Erfolg")
-
-    res.send({auth:userID})
+        res.send({ auth: userID })
 
     } catch (error) {
         console.error(error)
-        res.send({auth: "error"})
+        res.send({ auth: "error" })
     }
 })
 
@@ -59,13 +68,13 @@ app.post("/api/users/items", (req, res) => {
     const item_array = users.find(u => u.userID == req.query.userID)["items"]
 
     item_array.push({
-            itemID: "item:" + (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2), //unique itemID with time + random number
-            item: req.query.item,
-            quantity: req.query.quantity,
-            unit: req.query.unit,
-            responsible: req.query.responsible,
-            ticked: req.query.ticked
-        })
+        itemID: "item:" + (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2), //unique itemID with time + random number
+        item: req.query.item,
+        quantity: req.query.quantity,
+        unit: req.query.unit,
+        responsible: req.query.responsible,
+        ticked: req.query.ticked
+    })
     res.send(200)
 })
 
@@ -87,7 +96,7 @@ app.post("/api/users/items/ticked", (req, res) => {
         res.status(404).json({ message: + " ID" + itemID + " was not found!" })
     }
 
-res.send(200)
+    res.send(200)
 })
 
 // DELETE ITEM

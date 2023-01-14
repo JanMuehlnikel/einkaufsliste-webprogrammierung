@@ -28,23 +28,20 @@ function LoginPage() {
                 },
                 method: "POST",
             })
-            .then(response => response.json())
-            .then(response => {
+            .then(res => res.json())
+            .then(res => {
 
-                if (response.auth != "error") {
-                    setUserID(response.auth)
+                if (res.auth != "error") {
+                    setUserID(res.auth)
                     setLoginMessage("Erfolgreich angemeldet!")
                     setLoggedIn(true)
                     navigate("/list")
                 } else {
                     setLoginMessage("Die Email Adresse oder das Passwort sind falsch!")
-                    return (
-                        <h1>Failed</h1>
-                    )
                 }
 
             })
-            .catch(function (response) { console.log(response) })
+            .catch(function (res) { console.log(res) })
     }
 
     return (
