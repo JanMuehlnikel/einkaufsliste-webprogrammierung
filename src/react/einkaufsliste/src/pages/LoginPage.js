@@ -18,7 +18,7 @@ function LoginPage() {
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onLogin = data => {
-        fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/login?" +
+        fetch("http://localhost:8080/api/login?" +
             "email=" + data.email +
             "&password=" + data.password,
             {

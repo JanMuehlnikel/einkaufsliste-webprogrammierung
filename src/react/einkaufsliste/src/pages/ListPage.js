@@ -26,7 +26,7 @@ function ListPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items?" +
+    fetch("http://localhost:8080/api/users/items?" +
       "userID=" + userID +
       "&item=" + data.item +
       "&quantity=" + data.quantity +
@@ -45,7 +45,7 @@ function ListPage() {
   }
 
   // GET ITEMS
-  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + userID);
+  const { isLoading, data, error } = useFetch("http://localhost:8080/api/user/items/" + userID);
 
   if (isLoading) {
     return <div>IS loading</div>
@@ -59,7 +59,7 @@ function ListPage() {
 
   function deleteItem(ItemID) {
     console.log('DELETING')
-    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + userID + "@" + ItemID, {
+    fetch("http://localhost:8080/api/users/items/" + userID + "@" + ItemID, {
       method: 'DELETE'
     })
       .then(function (res) { window.location.reload() })
@@ -68,7 +68,7 @@ function ListPage() {
   //tickItem
   function tickItem(iID, tick) {
     console.log(tick)
-    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/ticked?" +
+    fetch("http://localhost:8080/api/users/items/ticked?" +
       "userID=" + userID +
       "&itemID=" + iID +
       "&ticked=" + tick,

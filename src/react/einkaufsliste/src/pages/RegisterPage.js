@@ -21,7 +21,7 @@ function RegisterPage() {
    const generatedID = "user:" + (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2)
 
    const onRegister = data => {
-      fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/register?" +
+      fetch("http://localhost:8080/api/register?" +
          "userID=" + generatedID +
          "&prename=" + data.prename +
          "&name=" + data.name +
