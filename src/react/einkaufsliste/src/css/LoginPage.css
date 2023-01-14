@@ -1,9 +1,13 @@
-.form-group{
+.form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-.btn{
+.btn {
     text-align: center;
     width: 50%;
+}
+
+p{
+    color: red
 }

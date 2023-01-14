@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import "../css/ListPage.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 
-import Navigation from '../components/navbar';
 import Signup from './Signup';
 
 import useFetch from "react-fetch-hook";
 import { useForm } from "react-hook-form";
-import { validationUserID } from '../constants';
+
+import { Logging } from "../context/context";
+import { Authentification } from '../context/context';
 
 function ListPage() {
+
+  const { loggedIn, setLoggedIn } = useContext(Logging)
+  const { userID, setUserID } = useContext(Authentification)
 
   // add article modal functions
   const [show, setShow] = useState(false);
@@ -23,7 +27,7 @@ function ListPage() {
 
   const onSubmit = data => {
     fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items?" +
-      "userID=" + validationUserID +
+      "userID=" + userID +
       "&item=" + data.item +
       "&quantity=" + data.quantity +
       "&unit=" + data.unit +
@@ -41,7 +45,7 @@ function ListPage() {
   }
 
   // GET ITEMS
-  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + validationUserID);
+  const { isLoading, data, error } = useFetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/user/items/" + userID);
 
   if (isLoading) {
     return <div>IS loading</div>
@@ -53,10 +57,9 @@ function ListPage() {
 
   // DELETE ITEMS
 
-  function deleteItem(id) {
-    console.log(id)
+  function deleteItem(ItemID) {
     console.log('DELETING')
-    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + validationUserID + "@" + id, {
+    fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/" + userID + "@" + ItemID, {
       method: 'DELETE'
     })
       .then(function (res) { window.location.reload() })
@@ -65,7 +68,7 @@ function ListPage() {
   //tickItem
   function tickItem(iID, tick) {
     fetch("https://8080-janmuehlnik-einkaufslis-o4z085hqnla.ws-eu82.gitpod.io/api/users/items/ticked?" +
-      "userID=" + validationUserID +
+      "userID=" + userID +
       "&itemID=" + iID +
       "&ticked=" + tick,
       {
@@ -91,7 +94,7 @@ function ListPage() {
               <div class="col">
                 <div class="input-group mb-1">
 
-                  <button class="btn btn-outline-secondary" id={"btn-text-" + tickedValue} onClick={() => tickItem(item.itemID, true)}>
+                  <button class="btn btn-light btn-outline-secondary" id={"btn-text-" + tickedValue} onClick={() => tickItem(item.itemID, true)}>
                     {item.item + " "
                       + item.quantity + " "
                       + item.unit +

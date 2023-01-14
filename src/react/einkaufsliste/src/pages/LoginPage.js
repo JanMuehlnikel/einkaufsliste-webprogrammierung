@@ -5,13 +5,16 @@ import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Logging } from "../context/context";
 import { Authentification } from "../context/context";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
 
     const {loggedIn, setLoggedIn} = useContext(Logging)
     const {userID, setUserID} = useContext(Authentification)
 
-    const [loginMessage, setLoginMessage] = useState("")
+    const [warnMessage, setLoginMessage] = useState("")
+
+    const navigate = useNavigate();
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onLogin = data => {
@@ -29,13 +32,15 @@ function LoginPage() {
             .then(response => {
 
                 if (response.auth != "error") {
-                    console.log("Successful Login!")
                     setUserID(response.auth)
                     setLoginMessage("Erfolgreich angemeldet!")
                     setLoggedIn(true)
+                    navigate("/list")
                 } else {
-                    console.log("Login failed1")
                     setLoginMessage("Die Email Adresse oder das Passwort sind falsch!")
+                    return (
+                        <h1>Failed</h1>
+                    )
                 }
 
             })
@@ -69,14 +74,13 @@ function LoginPage() {
                             <label for="input-password">Passwort</label>
                             <input {...register("password")} type="password" class="form-control" id="input-password" placeholder="Passwort" />
                         </div>
+                        <p class="txt-warnMessage">{warnMessage}</p>
                         <button type="submit" class="btn btn-light btn-primary">Einloggen</button>
                     </form>
+
                 </div>
 
                 <div class="col"></div>
-                    
-                {loggedIn ? <h1>LOGGED IN</h1>: <h1>Not loggedIn</h1>}
-                <p>{userID}</p>
 
             </div>
         </main >

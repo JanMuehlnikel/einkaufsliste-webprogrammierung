@@ -5,7 +5,11 @@ const path = require('path');
 let users = [
     {
         userID: "user1", prename: "Jan", name: "Mühlnikel", email: "jan.muehlnikel@gmx.de", password: "jan2001",
-        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "jan", ticked: false }]
+        items: [{ itemID: "1", item: "Apfel", quantity: "4", unit: "Stück", responsible: "Jan", ticked: false }]
+    },
+    {
+        userID: "user2", prename: "Franziska", name: "Marb", email: "franziska.marb@gmx.de", password: "pw123",
+        items: [{ itemID: "1", item: "Banan", quantity: "4", unit: "Stück", responsible: "Franziska", ticked: false }]
     },
 ]
 
@@ -28,6 +32,25 @@ app.post("/api/register", (req, res) => {
         items: []
     })
     res.send(200)
+})
+
+// POST LOGIN
+app.post("/api/login", (req, res) => {
+    try {
+    console.log(req.query.email)
+    console.log(req.query.password)
+    userEmail = users.find(u => u.email == req.query.email)["email"]
+    userPassword = users.find(u => u.password == req.query.password)["password"]
+    userID = users.find(u => u.email == req.query.email)["userID"]
+
+    console.log("Erfolg")
+
+    res.send({auth:userID})
+
+    } catch (error) {
+        console.error(error)
+        res.send({auth: "error"})
+    }
 })
 
 // POST ITEMS
@@ -57,8 +80,7 @@ app.post("/api/users/items/ticked", (req, res) => {
 
     if (item) {
         // filter out the item id and create new array without the id
-        console.log(users[0]['items'].find(u => u.itemID == itemID)['ticked'])
-        users[0]['items'].find(u => u.itemID == itemID)['ticked'] = "true"
+        users.find(u => u.userID == userID)['items'].find(u => u.itemID == itemID)['ticked'] = "true"
 
         res.status(200).json(item)
     } else {
@@ -81,7 +103,7 @@ app.delete('/api/users/items/:UserIDItemID', (req, res) => {
 
     if (deleted) {
         // filter out the deleted id and create new array without the id
-        users[0]['items'] = item_array.filter(i => i.itemID != itemID)
+        users.find(u => u.userID == userID)['items'] = item_array.filter(i => i.itemID != itemID)
         res.status(200).json(deleted)
     } else {
         res.status(404).json({ message: + " ID" + itemID + " was not found!" })

@@ -1,1 +1,0 @@
-export var validationUserID = "user2"
