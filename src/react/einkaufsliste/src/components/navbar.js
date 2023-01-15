@@ -37,7 +37,7 @@ function Navigation() {
                             <Link class="nav-link" to="/">Homepage</Link>
                             <Link class="nav-link" to="/list">Einkaufsliste</Link>
                             <Link class="nav-link" to="/planner">Wochenplaner</Link>
-                            <Link class="nav-link" to="/">Rezepte</Link>
+                            <Link class="nav-link" to="/recepts">Rezepte</Link>
                         </Nav>
                         <Nav className="mr-auto">
                                 <Nav className="mr-auto"></Nav>

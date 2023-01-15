@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Navigation from './components/navbar';
 import PlannerPage from './pages/PlannerPage';
+import ReceptPage from './pages/ReceptPage';
 
 import { Logging } from './context/context';
 import { Authentification } from './context/context';
@@ -53,6 +54,7 @@ function App() {
           <Route path="" element={<LandingPage />} />
           <Route path="/list" element={<ListPage></ListPage>}></Route>
           <Route path="/planner" element={<PlannerPage></PlannerPage>}></Route>
+          <Route path="/recepts" element={<ReceptPage></ReceptPage>}></Route>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
         </Routes>

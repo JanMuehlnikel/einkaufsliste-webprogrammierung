@@ -52,11 +52,9 @@
 }
 
 #btn-addArticle{
-    font-weight: bolder;
     text-align: center;
     margin-top: 20px;
     word-Wrap: break-word;
-    font-size: 12px;
     position:  sticky;
     width: 80%;
     bottom: 30px;

@@ -23,7 +23,7 @@ function PlannerPage() {
     const handleShow = () => setShow(true);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
+
     const onSubmit = data => {
         fetch("http://localhost:8080/api/users/planner?" +
             "userID=" + userID +
@@ -51,7 +51,7 @@ function PlannerPage() {
     if (error) {
         return <div>CONNECTING ERROR</div>
     }
-    
+
 
 
     function showDays() {
@@ -73,57 +73,68 @@ function PlannerPage() {
     }
 
     return (
-
-        <div class="container">
-            <div class="row mt-3">
-                <div class="col">
-
-                </div>
+        <main class="container-fluid" id="con-listpage">
+            <div class="row">
+                <div class="col"></div>
 
                 <div class="col">
-                    {showDays()}
-                    <button class="btn btn-lg btn-light btn-primary" id="btn-save" onClick={handleShow}>Bearbeiten</button>
+                    <h1>Wochenplaner</h1>
                 </div>
 
-                <div class="col">
+                <div class="col"></div>
 
-                </div>
             </div>
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col">
 
-            <Modal show={show} onHide={handleClose} animation={false}>
+                    </div>
 
-                <Modal.Header closeButton>
-                    <Modal.Title>Artikel hinzufügen</Modal.Title>
-                </Modal.Header>
+                    <div class="col">
+                        {showDays()}
+                        <button class="btn btn-lg btn-light btn-primary" id="btn-edit" onClick={handleShow}>Bearbeiten</button>
+                    </div>
 
-                <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-        
+                    <div class="col">
 
-                        <div class="input-group mb-3">
-                            <select {...register("weekday")} type="text" class="form-control" placeholder="Wochentag" aria-label="Wochentag" aria-describedby="basic-addon1">
-                                <option value="Montag">Montag</option>
-                                <option value="Dienstag">Dienstag</option>
-                                <option value="Mittwoch">Mittwoch</option>
-                                <option value="Donnerstag">Donnerstag</option>
-                                <option value="Freitag">Freitag</option>
-                                <option value="Samstag">Samstag</option>
-                                <option value="Sonntag">Sonntag</option>
-                            </select>
-                        </div>
+                    </div>
+                </div>
 
-                        <div class="input-group mb-3">
-                            <input {...register("plan")} type="text" class="form-control" placeholder="Gericht" aria-label="Gericht" aria-describedby="basic-addon1" />
-                        </div>
+                <Modal show={show} onHide={handleClose} animation={false}>
 
-                        <button class="w-100 btn btn-light btn-lg btn-primary" id="btn-hinzufügen" type="submit">Plan hinzufügen</button>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Artikel hinzufügen</Modal.Title>
+                    </Modal.Header>
 
-                    </form>
-                </Modal.Body>
+                    <Modal.Body>
+                        <form onSubmit={handleSubmit(onSubmit)}>
 
-            </Modal>
 
-        </div>
+                            <div class="input-group mb-3">
+                                <select {...register("weekday")} type="text" class="form-control" placeholder="Wochentag" aria-label="Wochentag" aria-describedby="basic-addon1">
+                                    <option value="Montag">Montag</option>
+                                    <option value="Dienstag">Dienstag</option>
+                                    <option value="Mittwoch">Mittwoch</option>
+                                    <option value="Donnerstag">Donnerstag</option>
+                                    <option value="Freitag">Freitag</option>
+                                    <option value="Samstag">Samstag</option>
+                                    <option value="Sonntag">Sonntag</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <input {...register("plan")} type="text" class="form-control" placeholder="Gericht" aria-label="Gericht" aria-describedby="basic-addon1" />
+                            </div>
+
+                            <button class="w-100 btn btn-light btn-lg btn-primary" id="btn-hinzufügen" type="submit">Plan hinzufügen</button>
+
+                        </form>
+                    </Modal.Body>
+
+                </Modal>
+
+            </div>
+        </main>
 
     )
 }
