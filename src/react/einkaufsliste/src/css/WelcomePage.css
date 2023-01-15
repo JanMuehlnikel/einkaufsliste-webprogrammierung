@@ -1,0 +1,20 @@
+#con-signuppage{
+    text-align: center;
+}
+
+#h-cta{
+    margin-top: 30px;
+    color: gray;
+    font-weight: normal;
+}
+
+#btn-login{
+    width: 20%;
+    margin-top: 50px;
+}
+
+#btn-register{
+    width: 20%;
+    margin-top: 25px;
+    columns: wh;
+}

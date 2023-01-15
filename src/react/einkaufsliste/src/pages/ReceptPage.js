@@ -3,11 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ReceptPage.css'
 import { Logging } from "../context/context";
 import { Authentification } from '../context/context';
+import WelcomePage from "./WelcomePage";
 
 function ReceptPage() {
 
     const { loggedIn, setLoggedIn } = useContext(Logging)
     const { userID, setUserID } = useContext(Authentification)
+
     const Recepts = {
         bolgnese: {
             name: "Spaghetti Blognese",
@@ -117,23 +119,28 @@ function ReceptPage() {
         )
 
     }
+    if (loggedIn === true) {
+        return (
+            <main class="container-fluid" id="con-receptPage">
+                <div class="row">
+                    <div class="col"></div>
 
-    return (
-        <main class="container-fluid" id="con-receptPage">
-            <div class="row">
-                <div class="col"></div>
+                    <div class="col">
+                        <h1 id="header">Rezeptwelt</h1>
+                    </div>
 
-                <div class="col">
-                    <h1 id="header">Rezeptwelt</h1>
+                    <div class="col"></div>
+
+                    {showRecepts()}
                 </div>
+            </main>
 
-                <div class="col"></div>
-
-                {showRecepts()}
-            </div>
-        </main>
-
-    )
+        )
+    } else {
+        return (
+            <WelcomePage></WelcomePage>
+        )
+    }
 }
 
 export default ReceptPage
