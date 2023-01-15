@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { Logging } from "../context/context";
 import { Authentification } from "../context/context";
 import { useNavigate } from "react-router-dom";
-import WelcomePage from "./WelcomePage";
 
 function RegisterPage() {
 
@@ -49,8 +48,6 @@ function RegisterPage() {
          .catch(function (res) { console.log(res) })
    }
 
-
-   if (loggedIn) {
       return (
          <main class="container-fluid" id="con-registerpage">
 
@@ -87,7 +84,7 @@ function RegisterPage() {
                         <input {...register("password")} type="password" class="form-control" id="input-password" placeholder="Passwort" />
                      </div>
                      <p class="txt-warnMessage" id="txt-warn">{warnMessage}</p>
-                     <button type="submit" class="btn btn-light btn-primary">Registrieren</button>
+                     <button type="submit" class="btn btn-light btn-primary">Hier registrieren</button>
                   </form>
                </div>
 
@@ -96,9 +93,6 @@ function RegisterPage() {
             </div>
          </main >
       )
-   } else {
-      <WelcomePage></WelcomePage>
-   }
 }
 
 export default RegisterPage

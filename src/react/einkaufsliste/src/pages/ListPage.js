@@ -171,7 +171,7 @@ function ListPage() {
         <Modal show={show} onHide={handleClose} animation={false}>
 
           <Modal.Header closeButton>
-            <Modal.Title>Artikel hinzufügen</Modal.Title>
+            <Modal.Title className='modal-title'>Artikel hinzufügen</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>

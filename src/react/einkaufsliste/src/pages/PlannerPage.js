@@ -72,7 +72,8 @@ function PlannerPage() {
         )
     }
 
-    if (loggedIn) {
+    if (loggedIn
+        ) {
         return (
             <main class="container-fluid" id="con-listpage">
                 <div class="row">
@@ -104,7 +105,7 @@ function PlannerPage() {
                     <Modal show={show} onHide={handleClose} animation={false}>
 
                         <Modal.Header closeButton>
-                            <Modal.Title>Artikel hinzufügen</Modal.Title>
+                            <Modal.Title>Gericht hinzufügen</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body>
@@ -127,7 +128,7 @@ function PlannerPage() {
                                     <input {...register("plan")} type="text" class="form-control" placeholder="Gericht" aria-label="Gericht" aria-describedby="basic-addon1" />
                                 </div>
 
-                                <button class="w-100 btn btn-light btn-lg btn-primary" id="btn-hinzufügen" type="submit">Plan hinzufügen</button>
+                                <button class="w-100 btn btn-light btn-lg btn-primary" id="btn-hinzufügen" type="submit">Gericht jetzt hinzufügen</button>
 
                             </form>
                         </Modal.Body>

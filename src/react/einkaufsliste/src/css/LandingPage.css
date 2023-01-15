@@ -1,0 +1,11 @@
+#btn-login {
+    width: 30% !important;
+    background-color: rgb(62, 189, 253);
+    color: white;
+}
+
+#btn-register {
+    width: 30% !important;
+    background-color: rgb(255, 58, 58);
+    color: white;
+}
