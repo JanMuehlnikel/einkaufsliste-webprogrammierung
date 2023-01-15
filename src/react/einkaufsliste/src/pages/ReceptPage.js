@@ -38,7 +38,7 @@ function ReceptPage() {
                 Mais: { name: "Mais", quantity: "200", unit: "Gramm" },
                 Kidneybohnen: { name: "Kidneybohnen", quantity: "500", unit: "Gramm" },
                 Knoblauchzehe: { name: "Knoblauchzehe", quantity: "1", unit: "" },
-                Salz: { name: "Salz", quantity: "Salz", unit: "" },
+                Salz: { name: "Salz", quantity: "", unit: "" },
                 Pfeffer: { name: "Pfeffer", quantity: "", unit: "" },
                 Chillipulver: { name: "Chillipulver", quantity: "", unit: "" }
             },
