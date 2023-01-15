@@ -119,7 +119,7 @@ function ReceptPage() {
         )
 
     }
-    if (loggedIn === true) {
+    if (loggedIn) {
         return (
             <main class="container-fluid" id="con-receptPage">
                 <div class="row">

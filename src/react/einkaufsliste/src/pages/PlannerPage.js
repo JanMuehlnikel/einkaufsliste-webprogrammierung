@@ -72,7 +72,7 @@ function PlannerPage() {
         )
     }
 
-    if (loggedIn === true) {
+    if (loggedIn) {
         return (
             <main class="container-fluid" id="con-listpage">
                 <div class="row">

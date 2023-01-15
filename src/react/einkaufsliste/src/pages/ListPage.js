@@ -131,7 +131,7 @@ function ListPage() {
     )
   }
 
-  if (loggedIn === true) {
+  if (loggedIn) {
     return (
       // full width container
       <main class="container-fluid" id="con-listpage">
