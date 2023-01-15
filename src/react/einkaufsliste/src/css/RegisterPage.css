@@ -8,6 +8,6 @@
     width: 50%;
 }
 
-p{
-    color: red
+#txt-warn{
+    color: rgb(255, 0, 0)
 }

@@ -71,7 +71,7 @@ function LoginPage() {
                             <label for="input-password">Passwort</label>
                             <input {...register("password")} type="password" class="form-control" id="input-password" placeholder="Passwort" />
                         </div>
-                        <p class="txt-warnMessage">{warnMessage}</p>
+                        <p class="txt-warnMessage" id="txt-warn">{warnMessage}</p>
                         <button type="submit" class="btn btn-light btn-primary">Einloggen</button>
                     </form>
 

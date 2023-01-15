@@ -31,7 +31,7 @@ function Navigation() {
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-                {loggedIn && userID !="" ?
+                {loggedIn && userID != "" ?
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Link class="nav-link" to="/">Homepage</Link>
@@ -40,9 +40,9 @@ function Navigation() {
                             <Link class="nav-link" to="/recepts">Rezepte</Link>
                         </Nav>
                         <Nav className="mr-auto">
-                                <Nav className="mr-auto"></Nav>
-                                {/*<Navbar.Text><a href="#login">Account</a></Navbar.Text>*/}
-                                <Link class="nav-link" onClick={() => logOut()}>Ausloggen</Link>
+                            <Nav className="mr-auto"></Nav>
+                            {/*<Navbar.Text><a href="#login">Account</a></Navbar.Text>*/}
+                            <Link class="nav-link" onClick={() => logOut()}>Ausloggen</Link>
                         </Nav>
                     </Navbar.Collapse>
                     :
@@ -50,8 +50,8 @@ function Navigation() {
                         <Nav className="me-auto">
                             <Link class="nav-link" to="/">Homepage</Link>
                             <Link class="nav-link" to="/list">Einkaufsliste</Link>
-                            <Link class="nav-link" to="/">Wochenplaner</Link>
-                            <Link class="nav-link" to="/">Rezepte</Link>
+                            <Link class="nav-link" to="/planner">Wochenplaner</Link>
+                            <Link class="nav-link" to="/recepts">Rezepte</Link>
                         </Nav>
                         <Nav className="mr-auto">
                             <Link class="nav-link" to="/login">Anmelden</Link>
