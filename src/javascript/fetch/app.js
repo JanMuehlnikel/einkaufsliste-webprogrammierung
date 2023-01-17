@@ -44,7 +44,7 @@ app.post("/api/register", (req, res) => {
             email: req.query.email,
             password: req.query.password,
             items: [],
-            planner: {Montag: "Schnitzel", Dienstag: "", Mittwoch:"", Donnerstag:"", Freitag:"", Samstag:"", Sonntag:""}
+            planner: {Montag: "", Dienstag: "", Mittwoch:"", Donnerstag:"", Freitag:"", Samstag:"", Sonntag:""}
         })
         res.status(200).json({ message: "success" })
     }
